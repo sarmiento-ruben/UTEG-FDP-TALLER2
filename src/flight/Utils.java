@@ -26,7 +26,7 @@ public class Utils {
         while(true){
             printLoop();
 
-            String selectedOption = sc.nextLine();
+            String selectedOption = sc.nextLine().trim();
             int selectedOpt;
 
             try {
