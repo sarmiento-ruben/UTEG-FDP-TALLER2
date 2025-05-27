@@ -55,7 +55,8 @@ public class ModifyTicket {
         String tTypeRangeErrorMessage = String.format("El valor debe estar entre, %d y %d", 0, 1);
         int indexTicketType = InputHelper.askForInt(sc, tTypeMessage, tTypeBlankMessage, tTypeNoNumberMessage, 0, 1, tTypeRangeErrorMessage);
         String ticketType = TicketUtils.getType(indexTicketType);
-        
+        Float ticketPrice = flight_config.getTicketPrice(ticketType);
+
         
         // Num Cases
         int maxCases = flight_config.getMaxCases();
@@ -74,6 +75,7 @@ public class ModifyTicket {
         ticket.setFirstName(firstName);
         ticket.setLastName(lastName);
         ticket.setType(ticketType);
+        ticket.setPrice(ticketPrice);
         ticket.setNumCases(numCases);
         ticket.setCasesWeight(casesWeight);
 
