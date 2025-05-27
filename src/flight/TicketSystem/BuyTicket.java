@@ -1,7 +1,6 @@
 package flight.TicketSystem;
 
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 import flight.config.FlightConfigSchema;
 import flight.CancelException;
