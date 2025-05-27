@@ -15,10 +15,10 @@ public class TicketUtils {
         float weight;
         float[] casesWeight = new float[casesNum];
         int i = 0;
-        System.out.println("Ingrese el peso de cada maleta");
+        System.out.println("Ingrese el peso de cada maleta (EN KILOS)");
 
-        System.out.print("Ingrese el peso de la maleta #" + (i + 1) + ":");
         while (i < casesNum){
+            System.out.print("Ingrese el peso de la maleta (kg) #" + (i + 1) + ":");
             input = sc.nextLine().trim();
 
             if (input.isBlank()){

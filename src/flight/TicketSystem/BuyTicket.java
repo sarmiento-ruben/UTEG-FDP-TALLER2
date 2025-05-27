@@ -7,8 +7,6 @@ import flight.CancelException;
 import flight.InputHelper;
 
 public class BuyTicket {
-
-
     //  Function to process ticket buy
     public static TicketSchema buy(Scanner sc, FlightConfigSchema flight_config){
         /*
@@ -74,7 +72,6 @@ public class BuyTicket {
         String mWeightRangeErrorMessage = String.format("El valor debe estar entre, %.2f y %.2f", 0.0, maxWeight);
         float[] casesWeight = TicketUtils.askForCasesWeight(sc, numCases, 0, maxWeight, mWeightRangeErrorMessage);
         
-
         // Ticket generation
         TicketSchema ticket = new TicketSchema(ticketId, nid, firstName, lastName, ticketType, ticketPrice, numCases, casesWeight);
 
