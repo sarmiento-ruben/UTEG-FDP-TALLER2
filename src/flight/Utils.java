@@ -59,36 +59,6 @@ public class Utils {
             }
         }
     }
-
-    public static boolean hasDeadlinePassed(LocalDateTime buyDate, float maxTime){
-        int maxMinutes = (int) maxTime;
-        int maxSeconds = (int) ((maxTime - maxMinutes) * 60);
-        
-        LocalDateTime deadline = buyDate.plusMinutes(maxMinutes).plusSeconds(maxSeconds);
-        
-        return deadline.isBefore(LocalDateTime.now()); 
-    }
-
-    public static String askForTicketId(Scanner sc, FlightConfigSchema flight_config){
-        String ticketId;
-        try{
-            // Ticket id
-            String tIdMessage = "Escriba el id de su ticket: ";
-            String tIdBlankMessage = "El id de su ticket no puede se un espacio en blanco";
-            
-            ticketId = InputHelper.askForString(sc, tIdMessage, tIdBlankMessage);
-
-            if (!flight_config.existsPassenger(ticketId)){
-                System.out.println("El ticket no existe, intente nuevamente!");
-                return null;
-            }        
-            } catch (CancelException e){
-            System.err.println(e.getMessage());
-            return null;
-        }
-        return ticketId;
-    }
-
 }
 
 

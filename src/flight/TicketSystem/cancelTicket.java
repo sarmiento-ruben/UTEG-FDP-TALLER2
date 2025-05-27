@@ -2,7 +2,6 @@ package flight.TicketSystem;
 
 import java.util.Scanner;
 
-import flight.Utils;
 import flight.config.FlightConfigSchema;
 
 public class cancelTicket {
@@ -12,7 +11,7 @@ public class cancelTicket {
         float ticketDevolution;
         float ticketPrice;
 
-        ticketId = Utils.askForTicketId(sc, flight_config);
+        ticketId = TicketUtils.askForTicketId(sc, flight_config);
 
         ticket = flight_config.getTicket(ticketId);
         if (ticket == null){
@@ -23,7 +22,7 @@ public class cancelTicket {
 
         ticketPrice = ticket.getPrice();
         
-        if (Utils.hasDeadlinePassed(ticket.getBuyDate(), flight_config.getMaxTime())){
+        if (TicketUtils.hasDeadlinePassed(ticket.getBuyDate(), flight_config.getMaxTime())){
             ticketDevolution = ticketPrice - (ticketPrice * 0.20f);
             System.out.println("Ticket cancelado con multa del 20%, valor a devolver $" + ticketDevolution);
         } else {

@@ -9,64 +9,6 @@ import flight.InputHelper;
 
 public class BuyTicket {
 
-    // Function to ask for the weight of each case
-    private static float[] askForCasesWeight(Scanner sc, int casesNum, float minWeight, float maxWeight, String rangeErrorMessage) {
-        String input;
-        float weight;
-        float[] casesWeight = new float[casesNum];
-        int i = 0;
-        System.out.println("Ingrese el peso de cada maleta");
-
-        System.out.print("Ingrese el peso de la maleta #" + (i + 1) + ":");
-        while (i < casesNum){
-            input = sc.nextLine().trim();
-
-            if (input.isBlank()){
-                System.err.println("El valor no puede ser un valor vacío (maleta " +  (i + 1) + ")");
-                continue;
-            }
-
-            if (input.equalsIgnoreCase("Q")) {
-                throw new CancelException("Ejecución finalizada");
-            }
-
-            try {
-                weight = Float.parseFloat(input);
-            } catch (NumberFormatException e){
-                System.err.println("Ingrese un valor valido (maleta " +  (i + 1) + ")");
-                continue;
-            }
-                
-            if (weight < minWeight || weight > maxWeight){
-                System.err.println(rangeErrorMessage);
-                continue;
-            }
-
-            casesWeight[i] = weight;
-            ++i;
-        }
-        return casesWeight;
-    }
-
-    // Function to generate ticket ID
-    private static String generateTicketId(){
-        // Variable to build ID
-        StringBuilder id = new StringBuilder();
-        
-        for (int i = 0; i < 15; i++){
-            int digit = ThreadLocalRandom.current().nextInt(10);
-            id.append(digit);
-        }
-        return id.toString();
-    }
-
-    private static String getType(int type){
-        if (type == 0){
-            return "Nacional";
-        } else {
-            return "Internacional";            
-        }
-    }
 
     //  Function to process ticket buy
     public static TicketSchema buy(Scanner sc, FlightConfigSchema flight_config){
@@ -87,7 +29,7 @@ public class BuyTicket {
         System.out.println("Bienvenido al servicio de compra, para cancelar solo envíe \"Q\"");
 
         // Ticket ID
-        String ticketId = generateTicketId();
+        String ticketId = TicketUtils.generateTicketId();
 
         // National Identifier Document
         String nidMessage = "Ingrese su número de identificación: ";
@@ -116,7 +58,7 @@ public class BuyTicket {
         String tTypeNoNumberMessage = "Ingrese un valor numérico";
         String tTypeRangeErrorMessage = String.format("El valor debe estar entre, %d y %d", 0, 1);
         int indexTicketType = InputHelper.askForInt(sc, tTypeMessage, tTypeBlankMessage, tTypeNoNumberMessage, 0, 1, tTypeRangeErrorMessage);
-        String ticketType = getType(indexTicketType);
+        String ticketType = TicketUtils.getType(indexTicketType);
         Float ticketPrice = flight_config.getTicketPrice(ticketType);
         
         
@@ -131,7 +73,7 @@ public class BuyTicket {
         // CasesWeight
         float maxWeight = flight_config.getMaxWeight();
         String mWeightRangeErrorMessage = String.format("El valor debe estar entre, %.2f y %.2f", 0.0, maxWeight);
-        float[] casesWeight = askForCasesWeight(sc, numCases, 0, maxWeight, mWeightRangeErrorMessage);
+        float[] casesWeight = TicketUtils.askForCasesWeight(sc, numCases, 0, maxWeight, mWeightRangeErrorMessage);
         
 
         // Ticket generation

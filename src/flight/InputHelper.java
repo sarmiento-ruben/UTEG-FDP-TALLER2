@@ -2,6 +2,10 @@ package flight;
 
 import java.util.Scanner;
 
+import flight.TicketSystem.TicketSchema;
+import flight.TicketSystem.TicketUtils;
+import flight.config.FlightConfigSchema;
+
 public class InputHelper{
     
     public static String askForString(Scanner sc, String askMessage, String blankMessage){
@@ -89,4 +93,5 @@ public class InputHelper{
         }
         return output;
     }
+
 }

@@ -49,7 +49,59 @@ public class TicketSchema {
         return date;
     }
 
-    public float getPrice(){
+    public String getNid() {
+        return nid;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public float getPrice() {
         return price;
     }
+
+    public int getNumCases() {
+        return numCases;
+    }
+
+    public float[] getCasesWeight() {
+        return casesWeight;
+    }
+
+    public void setFirstName(String firstName) {
+    this.firstName = firstName;
+}
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setNumCases(int numCases) {
+        this.numCases = numCases;
+    }
+
+    public void setCasesWeight(float[] casesWeight) {
+        this.casesWeight = casesWeight;
+    }
+    public void setNid(String nid) {
+        this.nid = nid;
+    }
+
 }
